@@ -1,0 +1,101 @@
+---
+title: "Workflow, Wrangle(Intro), & Tibbles"
+subtitle: "R4DS book club"
+author: "Meenakshi Kushwaha"
+date: "2016/12/12 (updated: `r Sys.Date()`)"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+class:center, middle, inverse
+
+#Workflow
+## R Projects
+---
+
+---
+class:center, middle, inverse
+#Tibbles
+---
+#What are Tibbles
+- Data frames with different features to make life easier
+---
+# How to create tibbles
+
+.pull-left[
+Using `as_tibble()`
+```{r}
+library(tidyverse)
+as_tibble(cars)
+```
+
+]
+
+--
+
+.pull-right[
+From individual vectors
+```{r}
+tibble(
+  x = 1:5, 
+  y = 1, 
+  z = x ^ 2 + y
+)
+```
+
+]
+---
+# How to create tibbles
+
+
+.pull-left[
+Using **non-syntactic** names
+```{r}
+tb <- tibble(
+  `:)` = "smile", 
+  ` ` = "space",
+  `2000` = "number"
+)
+tb
+```
+
+]
+
+--
+.pull-right[
+Using tribble(), short for **tr**ansposed tibble
+```{r}
+tribble(
+  ~x, ~y, ~z,
+  #--|--|----
+  "a", 2, 3.6,
+  "b", 1, 8.5
+)
+```
+]
+---
+#Tibble vs Data Frames - Printing
+Tibble shows only the first 10 rows, and all the columns that fit on screen
+```{r}
+as_tibble(nycflights13::flights)
+```
+---
+#Tibble vs Data Frames - Subsetting
+- Extract by name
+```{r}
+cars$speed
+```
+
+
+- Extract by position
+  - `cars[[1]]`
+
+- Using in pipe
+  - `cars %>% .x$speed`
+  - `cars %>% .x[[1]]`
+
+*Tibbles are stricter than dataframes : they never do partial matching*
