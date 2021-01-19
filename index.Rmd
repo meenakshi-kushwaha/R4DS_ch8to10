@@ -2,7 +2,7 @@
 title: "Workflow, Wrangle(Intro), & Tibbles"
 subtitle: "R4DS book club"
 author: "Meenakshi Kushwaha"
-date: "2016/12/12 (updated: `r Sys.Date()`)"
+date: "2021/1/17 (updated: `r Sys.Date()`)"
 output:
   xaringan::moon_reader:
     lib_dir: libs
@@ -16,19 +16,43 @@ class:center, middle, inverse
 #Workflow
 ## R Projects
 ---
+# R projects
+- Create an RStudio project for each data analysis project.
 
+- Keep data files and scripts there.
+
+- Save your outputs (plots and cleaned data) there.
+
+- Only ever use relative paths, not absolute paths.
+---
+![](horst_monsters_here.png)
+---
+# Wrangle
+![](data-science-wrangle.png)
+- Data Transformation
+  - Mulitiple datasets
+  - Strings
+  - Factors
+  - Date and times
+???
+Import your data
+
+Format it for usability in R
+
+Transform your data to prepare it for whatever you want to do with it
 ---
 class:center, middle, inverse
 #Tibbles
 ---
 #What are Tibbles
-- Data frames with different features to make life easier
+- ####Data frames with different features to make life easier
+- ####Most functions in tidyverse produce a tibble as output
 ---
 # How to create tibbles
-
+Included in tidyverse library, or seperately using `library(tibble)`
 .pull-left[
 Using `as_tibble()`
-```{r}
+```{r message=FALSE}
 library(tidyverse)
 as_tibble(cars)
 ```
@@ -90,12 +114,14 @@ as_tibble(nycflights13::flights)
 cars$speed
 ```
 
-
 - Extract by position
   - `cars[[1]]`
 
-- Using in pipe
+- Using in pipe 
   - `cars %>% .x$speed`
-  - `cars %>% .x[[1]]`
-
-*Tibbles are stricter than dataframes : they never do partial matching*
+  
+####Tibbles also do much less than dataframes
+  - *They never do partial matching* (stricter than dataframes)
+  - They never change input type (so, no default converts strings to factors!), 
+  - They never change the names of variables
+  - They never create row names

@@ -15,7 +15,7 @@ class: center, middle, inverse, title-slide
 # Workflow, Wrangle(Intro), &amp; Tibbles
 ## R4DS book club
 ### Meenakshi Kushwaha
-### 2016/12/12 (updated: 2021-01-18)
+### 2021/1/17 (updated: 2021-01-19)
 
 ---
 
@@ -23,8 +23,6 @@ class:center, middle, inverse
 
 #Workflow
 ## R Projects
----
-![](data-science-wrangle.png)
 ---
 # R projects
 - Create an RStudio project for each data analysis project.
@@ -35,15 +33,31 @@ class:center, middle, inverse
 
 - Only ever use relative paths, not absolute paths.
 ---
+![](horst_monsters_here.png)
+---
+# Wrangle
+![](data-science-wrangle.png)
+- Data Transformation
+  - Mulitiple datasets
+  - Strings
+  - Factors
+  - Date and times
+???
+Import your data
+
+Format it for usability in R
+
+Transform your data to prepare it for whatever you want to do with it
+---
 class:center, middle, inverse
 #Tibbles
 ---
 #What are Tibbles
-- Data frames with different features to make life easier
-
+- ####Data frames with different features to make life easier
+- ####Most functions in tidyverse produce a tibble as output
 ---
 # How to create tibbles
-
+Included in tidyverse library, or seperately using `library(tibble)`
 .pull-left[
 Using `as_tibble()`
 
@@ -152,22 +166,21 @@ as_tibble(nycflights13::flights)
 
 ```
 ## # A tibble: 336,776 x 19
-##     year month   day dep_time sched_dep_time dep_delay arr_time
-##    &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;
-##  1  2013     1     1      517            515         2      830
-##  2  2013     1     1      533            529         4      850
-##  3  2013     1     1      542            540         2      923
-##  4  2013     1     1      544            545        -1     1004
-##  5  2013     1     1      554            600        -6      812
-##  6  2013     1     1      554            558        -4      740
-##  7  2013     1     1      555            600        -5      913
-##  8  2013     1     1      557            600        -3      709
-##  9  2013     1     1      557            600        -3      838
-## 10  2013     1     1      558            600        -2      753
-## # … with 336,766 more rows, and 12 more variables: sched_arr_time &lt;int&gt;,
-## #   arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;, tailnum &lt;chr&gt;,
-## #   origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;,
-## #   minute &lt;dbl&gt;, time_hour &lt;dttm&gt;
+##     year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time
+##    &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;          &lt;int&gt;
+##  1  2013     1     1      517            515         2      830            819
+##  2  2013     1     1      533            529         4      850            830
+##  3  2013     1     1      542            540         2      923            850
+##  4  2013     1     1      544            545        -1     1004           1022
+##  5  2013     1     1      554            600        -6      812            837
+##  6  2013     1     1      554            558        -4      740            728
+##  7  2013     1     1      555            600        -5      913            854
+##  8  2013     1     1      557            600        -3      709            723
+##  9  2013     1     1      557            600        -3      838            846
+## 10  2013     1     1      558            600        -2      753            745
+## # … with 336,766 more rows, and 11 more variables: arr_delay &lt;dbl&gt;,
+## #   carrier &lt;chr&gt;, flight &lt;int&gt;, tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;,
+## #   air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;, minute &lt;dbl&gt;, time_hour &lt;dttm&gt;
 ```
 ---
 #Tibble vs Data Frames - Subsetting
@@ -178,20 +191,21 @@ cars$speed
 ```
 
 ```
-##  [1]  4  4  7  7  8  9 10 10 10 11 11 12 12 12 12 13 13 13 13 14 14 14 14
-## [24] 15 15 15 16 16 17 17 17 18 18 18 18 19 19 19 20 20 20 20 20 22 23 24
-## [47] 24 24 24 25
+##  [1]  4  4  7  7  8  9 10 10 10 11 11 12 12 12 12 13 13 13 13 14 14 14 14 15 15
+## [26] 15 16 16 17 17 17 18 18 18 18 19 19 19 20 20 20 20 20 22 23 24 24 24 24 25
 ```
-
 
 - Extract by position
   - `cars[[1]]`
 
-- Using in pipe
+- Using in pipe 
   - `cars %&gt;% .x$speed`
-  - `cars %&gt;% .x[[1]]`
-
-*Tibbles are stricter than dataframes : they never do partial matching*
+  
+####Tibbles also do much less than dataframes
+  - *They never do partial matching* (stricter than dataframes)
+  - They never change input type (so, no default converts strings to factors!), 
+  - They never change the names of variables
+  - They never create row names
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
